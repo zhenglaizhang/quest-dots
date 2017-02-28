@@ -1,0 +1,4 @@
+alias tmux="tmux-next"
+alias open="nautilus"
+# xmodmap ~/.xmodmap 2>/dev/null
+

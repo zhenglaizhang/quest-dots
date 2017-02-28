@@ -1,0 +1,8 @@
+source ~/.vimrc
+
+
+" cs"'
+" cs"<q>
+" cst"
+" ds"
+set surround
