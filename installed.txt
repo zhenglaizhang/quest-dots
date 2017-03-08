@@ -32,3 +32,6 @@ youtube-dl
 zip
 zookeeperd
 zsh
+
+# haskell
+libgmp-dev
