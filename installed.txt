@@ -35,3 +35,7 @@ zsh
 
 # haskell
 libgmp-dev
+
+sudo add-apt-repository ppa:niko2040/e19
+sudo apt-get update
+sudo apt-get install terminology
