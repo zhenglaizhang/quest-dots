@@ -197,6 +197,7 @@ alias validate="sbt validate"
 alias tt="sbt test"
 alias tto="sbt testOnly"
 alias vcc="open target/scala-2.11/scoverage-report/index.html"
+alias co="sbt compile"
 
 # back to previous folder 
 #   cd -
