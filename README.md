@@ -29,8 +29,9 @@ cd ~/.vim/bundle/YouCompleteMe
 
 ## Arch
 ```bash
-pac netctl wpa_actiond libsodium shadowsocks-libev
+pac netctl wpa_actiond libsodium shadowsocks-libev proxychains
 sudo cp config.json /etc/shadowsocks/
+sudo cp proxychains.conf /etc/
 sudo systemctl start shadowsocks-libev@config.service
 
 ```
