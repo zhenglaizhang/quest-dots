@@ -1,38 +1,18 @@
+# If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 export ZSH=/home/zhenglai/.oh-my-zsh
 
-# `theme name` or `random`
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
-# use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# disable bi-weekly auto-update checks.
+HYPHEN_INSENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# DISABLE_LS_COLORS="true"
-
 DISABLE_AUTO_TITLE="true"
-ENABLE_CORRECTION="false"
+ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
-
-# set mail check interval as 0 to disable mail checking
 MAILCHECK=0
-
-# if you want to disable marking untracked files under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
@@ -47,20 +27,14 @@ setopt HIST_VERIFY               # Dont execute immediately upon history expansi
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 setopt HIST_NO_STORE             # Dont store function definitions.
 
-
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
     archlinux
     git
-    docker
-    docker-compose
-    sbt
+    #docker
+    #docker-compose
+    #sbt
     gradle
-    mvn
+    #mvn
     autojump
     colorize
     zsh-autosuggestions
@@ -70,44 +44,35 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# User configuration
+
 eval "$(hub alias -s)"
 
-bindkey '^p' autosuggest-accept
-bindkey '^r' autosuggest-execute
-
-
-# Opts
-export RI="--format ansi --width 70"
-export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=1G -XX:MetaspaceSize=1G -Xms2G -Xmx4G -Dlogging.level.root=INFO"
-export MAVEN_OPTS="-Xmx4G -XX:ReservedCodeCacheSize=1G"
-export PLAY_EDITOR="http://localhost:63342/api/file/?file=%s&line=%s"
-
-# local .secrets 
-# source ~/.secrets
-
-export MASTER=local[*]
-export SPARK_HOME=/opt/apache-spark
-export PYTHONPATH=$SPARK_HOME/python
-export PATH=$SPARK_HOME/bin:$PATH
-export PATH="$HOME/.node_modules/bin:/home/$USER/.bin:/home/$USER/.local/bin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
-# export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 export LANG=en_US.UTF-8
-export EDITOR="vim"
+export ARCHFLAGS="-arch x86_64"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
+export EDITOR='vim'
 
-# temp fix of sbt launch up issue
-export TERM="xterm-color"
+alias pc='proxychains '
+alias gco='git checkout '
+alias ccat='pygmentize -g'
+alias repo='cd ~/repo'
+alias gphom='git push origin master'
+alias gcim='git commit -m '
+alias gdc='git diff --cached '
+alias gcam='git add . && git commit -m '
+alias gplom='git pull origin master --rebase'
+alias repo="cd ~/repo"
+alias zshconfig="source ~/.zshrc"
+alias pac="sudo pacman -S --needed "
+alias subl="subl3"
+alias gw="./gradlew --parallel"
+alias cls="clear"
 
-# eval "$(rbenv init -)"
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+alias ccat='pygmentize -g'
+alias nvon="sudo tee /proc/acpi/bbswitch <<< ON"
+alias nvoff="rmmod nvidia_uvm && rmmod nvidia && sudo tee /proc/acpi/bbswitch <<< OFF"
 
 ###################### ALIAS START ####################
 
@@ -126,8 +91,8 @@ alias dm="docker-machine"
 alias dk="docker"
 alias c="clear"
 alias cppath="pwd|pbcopy"
-alias cat="pygmentize -g"
 alias removeDeps="yaourt -Qdt"
+alias py="python3"
 alias pc="proxychains -q"
 alias ruby="ruby -w"
 eval "$(hub alias -s)"
@@ -176,14 +141,19 @@ alias rmrf="rm -rf "
 alias tailf="tail -f "
 alias df="df -h"
 alias pc="proxychains"
+alias pi="sudo pip3 install --upgrade "
 
 ##################### ALIAS END #######################
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-# function sdk {
-    export SDKMAN_DIR="/home/zhenglai/.sdkman"
-    [[ -s "/home/zhenglai/.sdkman/bin/sdkman-init.sh" ]] && source "/home/zhenglai/.sdkman/bin/sdkman-init.sh"
-# }
+
+bindkey '^p' autosuggest-accept
+bindkey '^r' autosuggest-execute
+
+# opts
+export RI="--format ansi --width 70"
+export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=1G -XX:MetaspaceSize=1G -Xms2G -Xmx4G -Dlogging.level.root=INFO"
+export MAVEN_OPTS="-Xmx4G -XX:ReservedCodeCacheSize=1G"
+export PLAY_EDITOR="http://localhost:63342/api/file/?file=%s&line=%s"
 
 function exists { which $1 &> /dev/null }
 
