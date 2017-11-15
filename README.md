@@ -26,3 +26,11 @@ cd ~/.vim/bundle/YouCompleteMe
 ./install.py --clang-completer
 
 ```
+
+## Arch
+```bash
+pac netctl wpa_actiond libsodium shadowsocks-libev
+sudo cp config.json /etc/shadowsocks/
+sudo systemctl start shadowsocks-libev@config.service
+
+```
