@@ -55,7 +55,7 @@ Plugin 'easymotion/vim-easymotion.git'
 "Plugin 'altercation/vim-colors-solarized'  
 Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
-"Plugin 'Valloric/YouCompleteMe.git'
+Plugin 'Valloric/YouCompleteMe.git'
 Plugin 'scrooloose/nerdtree.git'
 "Plugin 'vim-scripts/a.vim.git'
 Plugin 'fholgado/minibufexpl.vim.git'
@@ -249,6 +249,7 @@ nmap <silent> <leader>y :NERDTreeFind<cr>
 let g:ycm_global_ycm_extra_conf = ".ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_python_binary_path = 'python3'
 nnoremap <F4> :YcmForceCompileAndDiagnostics<CR>
 
 """""""""""""""""""""" easymotion """""""""""""""""""""""""""
