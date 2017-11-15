@@ -13,3 +13,16 @@ sudo pip3 install percol
 ```
 
 Private dots, mainly for ubuntu + i3wm
+
+
+
+## 
+
+```
+
+# YouCompleteMe
+sudo apt-get install -y build-essential cmake python-dev python3-dev
+cd ~/.vim/bundle/YouCompleteMe
+./install.py --clang-completer
+
+```
