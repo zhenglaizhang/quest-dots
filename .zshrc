@@ -49,6 +49,9 @@ source $ZSH/oh-my-zsh.sh
 eval "$(hub alias -s)"
 
 export MANPATH="/usr/local/man:$MANPATH"
+export CUDA_HOME=/usr/local/cuda
+export PATH="$PATH:$CUDA_HOME/bin"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_HOME/lib64:$CUDA_HOME/extras/CUPTI/lib64"
 export LANG=en_US.UTF-8
 export ARCHFLAGS="-arch x86_64"
 export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -169,3 +172,6 @@ if exists percol; then
     zle -N percol_select_history
     bindkey '^F' percol_select_history
 fi
+
+fpath=(~/.zsh/completions $fpath) 
+autoload -U compinit && compinit
