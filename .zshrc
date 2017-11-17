@@ -175,3 +175,7 @@ fi
 
 fpath=(~/.zsh/completions $fpath) 
 autoload -U compinit && compinit
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/zhenglai/.sdkman"
+[[ -s "/home/zhenglai/.sdkman/bin/sdkman-init.sh" ]] && source "/home/zhenglai/.sdkman/bin/sdkman-init.sh"

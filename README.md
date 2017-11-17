@@ -54,6 +54,17 @@ sudo cp proxychains.conf /etc/
 sudo systemctl start shadowsocks-libev@config.service
 
 ```
+## SDKMAN
+
+```bash
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+sdk version
+
+sdk install springboot
+sdk install groovy
+spring run app.groovy
+```
 
 ## CUDA
 ```
