@@ -31,6 +31,13 @@ cd ~/.vim/bundle/YouCompleteMe
 ```bash
 mkdir -p ~/.zsh/completions
 cp etc/hub.zsh_completion ~/.zsh/completions/_hub
+
+cd /tmp
+sudo apt-get install build-essential
+wget https://download.libsodium.org/libsodium/releases/LATEST.tar.gz
+tar xf LATEST.tar.gz && cd libsodium-stable
+./configure && make -j4 && sudo make install
+sudo ldconfig
 ```
 
 ## Arch
