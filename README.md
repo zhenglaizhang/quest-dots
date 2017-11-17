@@ -63,6 +63,7 @@ sdk version
 
 sdk install springboot
 sdk install groovy
+sdk install gradle
 spring run app.groovy
 ```
 
