@@ -106,7 +106,7 @@ alias jps="jps -mlvV"
 alias ll="la"
 # git alias
 alias g="tig"
-alias gst="git status"
+alias gst="git status -s"
 alias ga="git add "
 alias gr='cd $(git rev-parse --show-toplevel)'
 alias gd="git diff "
