@@ -56,12 +56,14 @@ export LANG=en_US.UTF-8
 export ARCHFLAGS="-arch x86_64"
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 export EDITOR='vim'
+export TF_CPP_MIN_LOG_LEVEL=2 # warning
 
 alias pc='proxychains '
 alias gco='git checkout '
 alias ccat='pygmentize -g'
 alias repo='cd ~/repo'
 alias gphom='git push origin master'
+alias gpo='git push origin'
 alias gcim='git commit -m '
 alias gdc='git diff --cached '
 alias gcam='git add . && git commit -m '
@@ -95,8 +97,8 @@ alias dk="docker"
 alias c="clear"
 alias cppath="pwd|pbcopy"
 alias removeDeps="yaourt -Qdt"
-alias py="python3"
-alias p="python3"
+alias py="optirun python3"
+alias p="optirun python3"
 alias pc="proxychains -q"
 alias ruby="ruby -w"
 eval "$(hub alias -s)"
@@ -123,6 +125,7 @@ alias gphoo="proxychains git push origin order"
 alias gphod="proxychains git push origin dev"
 alias gpho="proxychains git push origin"
 alias gplo="proxychains git pull origin"
+alias gcl="proxychains git clone "
 alias gmr="git merge"
 
 # sbt alias
