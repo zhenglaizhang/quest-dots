@@ -76,3 +76,18 @@ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
 sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
 
 ```
+## Wine
+
+```
+pac wine_gecko wine-mono winetricks wine-staging-nine
+winecfg
+sudo bin/pdfx /usr/local/bin
+```
+
+## Cloud
+
+```
+# dropbox
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+~/.dropbox-dist/dropboxd
+```
