@@ -149,6 +149,7 @@ alias tailf="tail -f "
 alias df="df -h"
 alias pc="proxychains"
 alias pi="sudo pip3 install --upgrade "
+alias o="nautilus --no-desktop "
 
 ##################### ALIAS END #######################
 
