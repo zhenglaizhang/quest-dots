@@ -39,7 +39,6 @@ plugins=(
     colorize
     zsh-autosuggestions
     zsh-syntax-highlighting
-    z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -57,9 +56,12 @@ export ARCHFLAGS="-arch x86_64"
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 export EDITOR='vim'
 export TF_CPP_MIN_LOG_LEVEL=2 # warning
-
-alias dl='cd ~/repo/deep-learning'
+export PYTHONSTARTUP="$HOME/.pystartup.py"
 export PYTHONIOENCODING="utf8"
+
+alias diff='diff --color=auto '
+alias dl='cd ~/repo/deep-learning'
+alias sv='sudo vim'
 alias pc='proxychains '
 alias gco='git checkout '
 alias ccat='pygmentize -g'
@@ -73,6 +75,7 @@ alias gplom='git pull origin master --rebase'
 alias repo="cd ~/repo"
 alias zshconfig="source ~/.zshrc"
 alias pac="sudo pacman -S --needed "
+alias par="sudo pacman -Rns "
 alias subl="subl3"
 alias gw="./gradlew --parallel"
 alias cls="clear"
@@ -99,8 +102,8 @@ alias dk="docker"
 alias c="clear"
 alias cppath="pwd|pbcopy"
 alias removeDeps="yaourt -Qdt"
-# alias py="optirun python3"
-alias p="python3"
+alias py="python3"
+alias p="python3 -tt -OO"
 alias pc="proxychains -q"
 alias ruby="ruby -w"
 eval "$(hub alias -s)"
@@ -150,8 +153,9 @@ alias rmrf="rm -rf "
 alias tailf="tail -f "
 alias df="df -h"
 alias pc="proxychains"
-alias pi="sudo pip3 install --upgrade "
+alias pi="sudo proxychains pip3 install --upgrade "
 alias o="nautilus --no-desktop "
+
 
 ##################### ALIAS END #######################
 
@@ -184,5 +188,5 @@ fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/zhenglai/.sdkman"
-[[ -s "/home/zhenglai/.sdkman/bin/sdkman-init.sh" ]] && source "/home/zhenglai/.sdkman/bin/sdkman-init.sh"
+# export SDKMAN_DIR="/home/zhenglai/.sdkman"
+# [[ -s "/home/zhenglai/.sdkman/bin/sdkman-init.sh" ]] && source "/home/zhenglai/.sdkman/bin/sdkman-init.sh"
