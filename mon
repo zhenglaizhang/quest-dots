@@ -1,0 +1,1 @@
+nvidia-smi && sensors && free -h && top -bn 1
