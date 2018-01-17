@@ -58,6 +58,8 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 export EDITOR='vim'
 export TF_CPP_MIN_LOG_LEVEL=2 # warning
 
+alias dl='cd ~/repo/deep-learning'
+export PYTHONIOENCODING="utf8"
 alias pc='proxychains '
 alias gco='git checkout '
 alias ccat='pygmentize -g'
@@ -97,8 +99,8 @@ alias dk="docker"
 alias c="clear"
 alias cppath="pwd|pbcopy"
 alias removeDeps="yaourt -Qdt"
-alias py="optirun python3"
-alias p="optirun python3"
+# alias py="optirun python3"
+alias p="python3"
 alias pc="proxychains -q"
 alias ruby="ruby -w"
 eval "$(hub alias -s)"
