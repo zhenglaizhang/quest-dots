@@ -5,4 +5,7 @@ jt -f purisa -t chesterish
 
 ipython3 profile create
 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+pac xsel
+
 
