@@ -1,4 +1,5 @@
-pi pijupyterthemes gensim jieba numpy jupyter pandas seaborn grpcio nbtop
+pi pijupyterthemes gensim jieba numpy jupyter pandas seaborn grpcio nbtop Django
+
 # jt -f inconsolata -t chesterish
 jt -l
 jt -f purisa -t chesterish
