@@ -168,7 +168,6 @@ export RI="--format ansi --width 70"
 export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=1G -XX:MetaspaceSize=1G -Xms2G -Xmx4G -Dlogging.level.root=INFO"
 export MAVEN_OPTS="-Xmx4G -XX:ReservedCodeCacheSize=1G"
 export PLAY_EDITOR="http://localhost:63342/api/file/?file=%s&line=%s"
-export NLTK_DATA='/media/zhenglai/data/data/nltk'
 
 function exists { which $1 &> /dev/null }
 
