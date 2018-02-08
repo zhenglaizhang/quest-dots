@@ -48,7 +48,7 @@ source $ZSH/oh-my-zsh.sh
 eval "$(hub alias -s)"
 
 export MANPATH="/usr/local/man:$MANPATH"
-export CUDA_HOME=/usr/local/cuda
+export CUDA_HOME=/opt/cuda
 export PATH="$PATH:$CUDA_HOME/bin"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_HOME/lib64:$CUDA_HOME/extras/CUPTI/lib64"
 export LANG=en_US.UTF-8
@@ -74,7 +74,7 @@ alias gcam='git add . && git commit -m '
 alias gplom='git pull origin master --rebase'
 alias repo="cd ~/repo"
 alias zshconfig="source ~/.zshrc"
-alias pac="sudo pacman -S --needed "
+alias pac="sudo pacman -S --needed --noconfirm"
 alias par="sudo pacman -Rns "
 alias subl="subl3"
 alias gw="./gradlew --parallel"
