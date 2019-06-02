@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export ZSH=/home/zhenglai/.oh-my-zsh
+export ZSH=/Users/Zhenglai/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
@@ -28,19 +28,23 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 setopt HIST_NO_STORE             # Dont store function definitions.
 
 plugins=(
-    archlinux
+    # archlinux
     git
+    history
     #docker
     #docker-compose
     #sbt
-    gradle
+    z
+    #gradle
     #mvn
-    autojump
+    #autojump
     colorize
     zsh-autosuggestions
     zsh-syntax-highlighting
+    go
 )
 
+#z
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -48,7 +52,7 @@ source $ZSH/oh-my-zsh.sh
 eval "$(hub alias -s)"
 
 export MANPATH="/usr/local/man:$MANPATH"
-export CUDA_HOME=/opt/cuda
+export CUDA_HOME=/usr/local/cuda
 export PATH="$PATH:$CUDA_HOME/bin"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_HOME/lib64:$CUDA_HOME/extras/CUPTI/lib64"
 export LANG=en_US.UTF-8
@@ -57,25 +61,37 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 export EDITOR='vim'
 export TF_CPP_MIN_LOG_LEVEL=2 # warning
 export PYTHONSTARTUP="$HOME/.pystartup.py"
-export PYTHONIOENCODING="utf8"
 
-alias diff='diff --color=auto '
-alias dl='cd ~/repo/deep-learning'
-alias sv='sudo vim'
+export GOPATH="/Users/Zhenglai/go"
+export GOTRACEBACK=all
+
 alias pc='proxychains '
 alias gco='git checkout '
+alias gcod='git checkout dev'
+alias gcom='git checkout master'
+alias gco-='git checkout -'
+alias gco--='git checkout -- .'
+alias gcob='git checkout -b '
+alias grd='git rebase dev'
+alias grc='git rebase --continue'
+alias gra='git rebase --abort'
+alias grm='git rebase master'
+alias gba='git branch -av'
 alias ccat='pygmentize -g'
 alias repo='cd ~/repo'
 alias gphom='git push origin master'
-alias gpo='git push origin'
+alias gpho='git push origin'
 alias gcim='git commit -m '
 alias gdc='git diff --cached '
 alias gcam='git add . && git commit -m '
+alias gcan='git commit --amend --no-edit'
 alias gplom='git pull origin master --rebase'
+alias gplo='git pull origin '
+alias gpo='git push origin '
+alias gl='git ll'
 alias repo="cd ~/repo"
 alias zshconfig="source ~/.zshrc"
-alias pac="sudo pacman -S --needed --noconfirm"
-alias par="sudo pacman -Rns "
+alias pac="sudo pacman -S --needed "
 alias subl="subl3"
 alias gw="./gradlew --parallel"
 alias cls="clear"
@@ -108,12 +124,14 @@ alias pc="proxychains -q"
 alias ruby="ruby -w"
 eval "$(hub alias -s)"
 # JVM related tools alias
-alias jps="jps -mlvV"
+# alias jps="jps -mlvV"
 # common alias
 alias ll="la"
 # git alias
 alias g="tig"
+alias s="stree"
 alias gst="git status -s"
+alias gstash="git stash"
 alias ga="git add "
 alias gr='cd $(git rev-parse --show-toplevel)'
 alias gd="git diff "
@@ -122,15 +140,16 @@ alias gaa="git add ."
 alias gcam="git add .;git commit -am "
 alias gci="git commit"
 alias gcim="git commit -m"
-alias gplom="proxychains git pull origin master --rebase"
-alias gploo="proxychains git pull origin order --rebase"
-alias gplod="proxychains git pull origin dev --rebase"
-alias gphom="proxychains git push origin master"
-alias gphoo="proxychains git push origin order"
-alias gphod="proxychains git push origin dev"
-alias gpho="proxychains git push origin"
-alias gplo="proxychains git pull origin"
-alias gcl="proxychains git clone "
+alias gplom="git pull origin master --rebase"
+# alias gploo="git pull origin order --rebase"
+alias gplod="git pull origin dev --rebase"
+alias gplodd="git pull origin develop --rebase"
+alias gphom="git push origin master"
+# alias gphoo="proxychains git push origin order"
+alias gphod="git push origin dev"
+# alias gpho="proxychains git push origin"
+# alias gplo="proxychains git pull origin"
+# alias gcl="proxychains git clone "
 alias gmr="git merge"
 
 # sbt alias
@@ -153,9 +172,7 @@ alias rmrf="rm -rf "
 alias tailf="tail -f "
 alias df="df -h"
 alias pc="proxychains"
-alias pi="sudo proxychains pip3 install --upgrade "
-alias o="nautilus --no-desktop "
-
+alias pi="sudo pip3 install --upgrade "
 
 ##################### ALIAS END #######################
 
@@ -166,7 +183,7 @@ bindkey '^r' autosuggest-execute
 # opts
 export RI="--format ansi --width 70"
 export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxMetaspaceSize=1G -XX:MetaspaceSize=1G -Xms2G -Xmx4G -Dlogging.level.root=INFO"
-export MAVEN_OPTS="-Xmx4G -XX:ReservedCodeCacheSize=1G"
+export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
 export PLAY_EDITOR="http://localhost:63342/api/file/?file=%s&line=%s"
 
 function exists { which $1 &> /dev/null }
@@ -188,5 +205,5 @@ fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-# export SDKMAN_DIR="/home/zhenglai/.sdkman"
-# [[ -s "/home/zhenglai/.sdkman/bin/sdkman-init.sh" ]] && source "/home/zhenglai/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/home/zhenglai/.sdkman"
+[[ -s "/home/zhenglai/.sdkman/bin/sdkman-init.sh" ]] && source "/home/zhenglai/.sdkman/bin/sdkman-init.sh"
