@@ -1,9 +1,14 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export ZSH=/Users/Zhenglai/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="bira" #"avit"
+
+
+ZSH_COLORIZE_STYLE="default"
+ZSH_COLORIZE_TOOL=pygmentize
 
 HYPHEN_INSENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
@@ -12,6 +17,8 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 MAILCHECK=0
 DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+GIT_AUTO_FETCH_INTERVAL=1200 # in seconds
 
 HIST_STAMPS="yyyy-mm-dd"
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
@@ -27,33 +34,50 @@ setopt HIST_VERIFY               # Dont execute immediately upon history expansi
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 setopt HIST_NO_STORE             # Dont store function definitions.
 
+setopt complete_aliases
+
 plugins=(
     # archlinux
+    kubectl
+    # vscode
+    # git-open
+    #alias-finder
+    # command-not-found
     git
+    #git-extras
+    git-auto-fetch
+    #git-flow
+    #gitignore
+    # node
+    # github
+    # nvm
+    #pip
+    #redis-cli
     history
-    #docker
-    #docker-compose
+    docker
+    docker-compose
+    jsontools
+    web-search
+    #docker-machine
+    #encode64
     #sbt
     z
     #gradle
     #mvn
-    #autojump
+    autojump
     colorize
     zsh-autosuggestions
     zsh-syntax-highlighting
-    go
+    golang # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/golang
 )
 
 #z
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-eval "$(hub alias -s)"
-
 export MANPATH="/usr/local/man:$MANPATH"
 export CUDA_HOME=/usr/local/cuda
-export PATH="$PATH:$CUDA_HOME/bin"
+export PATH="$PATH:$HOME/bin"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_HOME/lib64:$CUDA_HOME/extras/CUPTI/lib64"
 export LANG=en_US.UTF-8
 export ARCHFLAGS="-arch x86_64"
@@ -62,11 +86,12 @@ export EDITOR='vim'
 export TF_CPP_MIN_LOG_LEVEL=2 # warning
 export PYTHONSTARTUP="$HOME/.pystartup.py"
 
-export GOPATH="/Users/Zhenglai/go"
+export GOPATH="$HOME/.go"
 export GOTRACEBACK=all
 
+alias task="asynctask -f"
 alias pc='proxychains '
-alias gco='git checkout '
+alias gco='git checkout -b'
 alias gcod='git checkout dev'
 alias gcom='git checkout master'
 alias gco-='git checkout -'
@@ -77,7 +102,7 @@ alias grc='git rebase --continue'
 alias gra='git rebase --abort'
 alias grm='git rebase master'
 alias gba='git branch -av'
-alias ccat='pygmentize -g'
+# alias ccat='pygmentize -g'
 alias repo='cd ~/repo'
 alias gphom='git push origin master'
 alias gpho='git push origin'
@@ -108,7 +133,7 @@ alias vi="vim"
 alias o="open"
 alias og="open https://github.com/zhenglaizhang"
 alias oz="open http://zhenglaizhang.net"
-alias gs="git status -s"
+alias gs="git status -sb"
 alias t="tmux"
 alias tu="tmuximator"
 alias tailf="tail -f"
@@ -122,15 +147,19 @@ alias py="python3"
 alias p="python3 -tt -OO"
 alias pc="proxychains -q"
 alias ruby="ruby -w"
+
+# sudo apt install snapd
+# sudo snap install hub --classic
 eval "$(hub alias -s)"
+
 # JVM related tools alias
 # alias jps="jps -mlvV"
 # common alias
 alias ll="la"
 # git alias
-alias g="tig"
+alias g="git"
 alias s="stree"
-alias gst="git status -s"
+alias gst="git status -sb"
 alias gstash="git stash"
 alias ga="git add "
 alias gr='cd $(git rev-parse --show-toplevel)'
@@ -173,6 +202,8 @@ alias tailf="tail -f "
 alias df="df -h"
 alias pc="proxychains"
 alias pi="sudo pip3 install --upgrade "
+alias c.="code ."
+alias c.r="code . -r"
 
 ##################### ALIAS END #######################
 
@@ -204,6 +235,19 @@ fi
 fpath=(~/.zsh/completions $fpath) 
 autoload -U compinit && compinit
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/zhenglai/.sdkman"
 [[ -s "/home/zhenglai/.sdkman/bin/sdkman-init.sh" ]] && source "/home/zhenglai/.sdkman/bin/sdkman-init.sh"
+
+# mkdir ~/.ruby
+export GEM_HOME=~/.ruby/
+export PATH="$PATH:~/.ruby/bin"
+
+# key bindings
+bindkey -s '\e[15~' 'task\n'
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
