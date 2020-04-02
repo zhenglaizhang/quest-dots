@@ -1,0 +1,220 @@
+# Put this in your ~/.gitconfig or ~/.config/git/config
+# Windows users: "~" is your profile's home directory, e.g. C:\Users\<YourName>
+[user]
+  name = Zhenglai Zhang
+  email = zhenglaizhang@hotmail.com
+[color]
+  # Enable colors in color-supporting terminals
+	ui = auto
+[alias]
+  # ref: https://blog.theodo.com/2017/06/git-game-advanced-git-aliases/
+  # ref: https://bitbucket.org/durdn/cfg/src/master/.gitconfig?at=master
+  # ref: https://www.durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+
+  # conflict/merges
+  ours = "!f() { git co --ours $@ && git add $@; }; f"
+  theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+  lasttag = describe --tags --abbrev=0
+
+  rem="!git config -l | grep remote.*url | tail -n +2"
+
+  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  dt = !git difftool -- $(git difftool --name-only | grep -Ev "*dll")
+  lucky = "!f() { git branch | grep -i " $1 " | head -1 | xargs -r git checkout; }; f"
+  branch-find = "!f() { git branch | grep -i " $1 "; }; f"
+  pushit = "!f() { git rev-parse --abbrev-ref HEAD ; }; git push --set-upstream origin `f`"
+  pull-upstream = !git fetch origin;git fetch upstream;git merge upstream/master
+  check-new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
+  clean-branch = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+  branch-done = "!f() { git checkout ${1-master} && git up && git branch-clean ${1-master}; }; f"
+  # git sba https://bitbucket.org/greatscott/vim-cool-extension.git .vim/bundle/cool-extension
+  sba = "!f() { \
+         git subtree add --prefix $2 $1 master --squash; \
+       }; f"
+  add-remote = "!f() { \
+        git remote add $1 https://github.com/$2.git; \
+      }; f"
+  myalias = "!f() { 〈your complex command〉 }; f"
+  ignore = !([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore
+	# Remove files which have been deleted
+	r  = !git ls-files -z --deleted | xargs -0 git rm
+	a = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\t=> \\2/' | sort
+  repo-new = !git init && git add . && git commit -m \"initial commit\"
+  repo-create = create
+  unpushed = log @{u}..
+	yesterday = "!git log --since yesterday --author $(git config user.email) --pretty=short"
+	divergence = "log --left-right --graph --cherry-pick --oneline $1...origin/$1"
+  aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
+  add-ignore = !"g(){ url="https://raw.githubusercontent.com/github/gitignore/master/$1.gitignore" ; curl --output /dev/null --silent --head --fail "$url" ; if [ $? -eq 0 ]; then curl "$url" >> .gitignore && echo "Appended .gitignore with $url" ; else echo "$url doesnt exist." ; fi ; }; g"
+  # Command shortcuts
+  dev = !git checkout dev && git pull origin dev
+	fixup = commit --fixup
+  coo = !git fetch && git checkout
+  ci = commit -m 
+  cm = !git add -A && git commit -m 
+  save = !git add -A && git commit -m 'SAVEPOINT'
+  wip = commit -am "WIP"
+	cis = ci-status -v # Hub
+  caa = commit -a --amend -C HEAD
+  co = checkout
+  cob = checkout -b 
+  ec = config --global -e
+  st = status
+	pop = reset HEAD^
+	last = --no-pager log -1 --oneline --color
+  # Display tree-like log, because default log is a pain…
+  ls = log --oneline
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  ld= ll --numstat
+  lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+  # Useful when you have to update your last commit
+  # with staged files without editing the commit message.
+  ammend = commit --amend --no-edit
+  # Ensure that force-pushing won't lose someone else's work (only mine).
+  push-with-lease = push --force-with-lease
+  # Rebase won’t trigger hooks on each "replayed" commit.
+  # This is an ugly hack that will replay each commit during rebase with the
+  # standard `commit` command which will trigger hooks.
+  rebase-with-hooks = rebase -x 'git reset --soft HEAD~1 && git commit -C HEAD@{1}'
+  # List local commits that were not pushed to remote repository
+  review-local = "!git lg @{push}.."
+  # Edit last commit message
+  reword = commit --amend
+  # Undo last commit but keep changed files in stage
+  uncommit = reset --soft HEAD~1
+  restore = reset HEAD~1 --mixed
+  # Remove file(s) from Git but not from disk
+  untrack = rm --cache --
+  # use `git reflog` to get it back
+  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+  root = "!cd $(git rev-parse --show-toplevel)"
+[core]
+  # Don't paginate output by default
+  pager = cat
+  # Global ignore file (not shared)
+  excludesfile = ~/.gitignore_global
+  # Global shared hooks directory
+  # hooksPath = ~/.githooks
+  #
+  # Out of luck: on Windows w/o msysGit? You may have Notepad++…
+  # editor = 'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin
+  # 
+  # If you want to use Sublime Text 2's subl wrapper:
+  # editor = subl -w
+  # 
+  # Sublime Text 3 on Windows:
+  # editor = 'c:/Program Files/Sublime Text 3/subl.exe' -w
+  #
+  # VSCode
+  editor = code --wait
+  # Don't consider trailing space change as a cause for merge conflicts
+  whitespace = -trailing-space
+[diff]
+  # Use better, descriptive initials (c, i, w) instead of a/b.
+  mnemonicPrefix = true
+  # Show renames/moves as such
+  renames = true
+  # When using --word-diff, assume --word-diff-regex=.
+  wordRegex = .
+  # Display submodule-related information (commit listings)
+  submodule = log
+  # Use VSCode as default diff tool when running `git diff-tool`
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+[fetch]
+  # Auto-fetch submodule changes (sadly, won't auto-update)
+  recurseSubmodules = on-demand
+[grep]
+  break = true
+  heading = true
+  lineNumber = true
+  # Consider most regexes to be ERE
+  extendedRegexp = true
+[log]
+  # Use abbrev SHAs whenever possible/relevant instead of full 40 chars
+  abbrevCommit = true
+  # Automatically --follow when given a single path
+  follow = true
+  # Disable decorate for reflog
+  # (because there is no dedicated `reflog` section available)
+  decorate = false
+[merge]
+  # Display common-ancestor blocks in conflict hunks
+  # conflictStyle = diff3
+  # Disable fast-forward merges as default merge strategy.
+  # Force explicit call of `git merge --ff …`.
+  ff = false
+  # Custom/dedicated merge drive for npm lock files (`package-lock.json`).
+  # Also works with Yarn.
+  # Use Git attributes to set targeted files (located at `~/.config/git/attributes``
+  # when installed with npm).
+  # See https://www.npmjs.com/package/npm-merge-driver
+  # [merge "npm-merge-driver"]
+  # name = automatically merge npm lockfiles
+  # driver = npx npm-merge-driver merge %A %O %B %P
+[mergetool]
+  # Clean up backup files created by merge tools on tool exit
+  keepBackup = false
+  # Clean up temp files created by merge tools on tool exit
+  keepTemporaries = false
+  # Put the temp files in a dedicated dir anyway
+  writeToTemp = true
+  # Auto-accept file prompts when launching merge tools
+  prompt = false
+# [page]
+  # Use custom pager to get an better log on terminal.
+  # As this is an external tool it has to be installed.
+  # See https://github.com/so-fancy/diff-so-fancy
+  # show = diff-so-fancy | less --tabs=4 -RFX
+[pull]
+  # This is GREAT… when you know what you're doing and are careful
+  # not to pull --no-rebase over a local line containing a true merge.
+  # rebase = true
+  # This option, which does away with the one gotcha of
+  # auto-rebasing on pulls, is only available from 1.8.5 onwards.
+  # rebase = preserve
+  # WARNING! This option, which is the latest variation, is only
+  # available from 2.18 onwards.
+  rebase = true
+[push]
+  # Default push should only push the current branch to its push target, regardless of its remote name
+  default = upstream
+  # When pushing, also push tags whose commit-ishs are now reachable upstream
+  followTags = true
+# [rebase]
+  # Rebase advanced usage.
+  # Automagically reorder and prefix your commands while doing an interactive
+  # rebase. This has to be used with `--fixup` and/or `--squash` options for
+  # `git commit`.
+  # autoSquash = true
+  # Automatically stash current WD and stage when running rebase
+  # then you won't have to manually `git stash push` and `git stash pop`
+  # after and before your rebase.
+  # autoStash = true
+# [rerere]
+  # If, like me, you like rerere, uncomment these
+  # autoupdate = true
+  # enabled = true
+[status]
+  # Display submodule rev change summaries in status
+  submoduleSummary = true
+  # Recursively traverse untracked directories to display all contents
+  showUntrackedFiles = all
+[color "branch"]
+  # Blue on black is hard to read in git branch -vv: use cyan instead
+  upstream = cyan
+[tag]
+  # Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
+  sort = version:refname
+[versionsort]
+  prereleaseSuffix = -pre
+  prereleaseSuffix = .pre
+  prereleaseSuffix = -beta
+  prereleaseSuffix = .beta
+  prereleaseSuffix = -rc
+  prereleaseSuffix = .rc
+[help]
+	autocorrect = 10
+[lfs]
+	fetchexclude = media/reallybigfiles
