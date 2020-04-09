@@ -13,7 +13,7 @@ ZSH_COLORIZE_TOOL=pygmentize
 HYPHEN_INSENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 DISABLE_AUTO_TITLE="true"
-ENABLE_CORRECTION="true"
+
 COMPLETION_WAITING_DOTS="true"
 MAILCHECK=0
 DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -35,9 +35,11 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 setopt HIST_NO_STORE             # Dont store function definitions.
 
 setopt complete_aliases
+setopt +o nomatch
 
 plugins=(
     # archlinux
+    tmux
     kubectl
     # vscode
     # git-open
@@ -74,6 +76,16 @@ plugins=(
 #z
 source $ZSH/oh-my-zsh.sh
 
+# disable correction
+# ENABLE_CORRECTION="true"
+DISABLE_CORRECTION="true"
+unsetopt correct_all
+
+# change dir with out `cd`
+setopt auto_cd
+# use auto completion: cd ~/D/b/g/42<tab>
+
+
 # User configuration
 export MANPATH="/usr/local/man:$MANPATH"
 export CUDA_HOME=/usr/local/cuda
@@ -86,8 +98,10 @@ export EDITOR='vim'
 export TF_CPP_MIN_LOG_LEVEL=2 # warning
 export PYTHONSTARTUP="$HOME/.pystartup.py"
 
-export GOPATH="$HOME/.go"
+export GOPATH="$HOME/go"
+export PATH=$PATH:${GOPATH//://bin:}/bin
 export GOTRACEBACK=all
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 
 alias task="asynctask -f"
 alias pc='proxychains '
@@ -204,12 +218,17 @@ alias pc="proxychains"
 alias pi="sudo pip3 install --upgrade "
 alias c.="code ."
 alias c.r="code . -r"
+# export DONT_PROMPT_WSL_INSTALL=1
+function ci () { echo 'y' | \code "$@" ; }
 
 ##################### ALIAS END #######################
 
 
 bindkey '^p' autosuggest-accept
 bindkey '^r' autosuggest-execute
+
+
+export KUBE_EDITOR='code --wait'
 
 # opts
 export RI="--format ansi --width 70"
@@ -249,5 +268,12 @@ export PATH="$PATH:~/.ruby/bin"
 # key bindings
 bindkey -s '\e[15~' 'task\n'
 
+
+export POWERLINE_HOME=/usr/local/lib/python3.6/dist-packages/powerline/bindings
+if [[ -r ${POWERLINE_HOME}/zsh/powerline.zsh ]]; then
+    source ${POWERLINE_HOME}/zsh/powerline.zsh
+fi
+
+complete -F __start_kubectl k
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
