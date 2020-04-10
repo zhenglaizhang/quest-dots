@@ -1,6 +1,12 @@
 # quest-dots
 
+- [Turn off Windows hot key in Windows](https://www.howtogeek.com/282080/how-to-disable-the-built-in-windows-key-shortcuts/)
+
 ```bash
+
+sudo add-apt-repository ppa:kgilmer/speed-ricer
+sudo apt-get update
+
 cp 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
