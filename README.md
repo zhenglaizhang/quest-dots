@@ -2,10 +2,14 @@
 
 - [Turn off Windows hot key in Windows](https://www.howtogeek.com/282080/how-to-disable-the-built-in-windows-key-shortcuts/)
 
+
 ```bash
 
 sudo add-apt-repository ppa:kgilmer/speed-ricer
 sudo apt-get update
+
+git clone https://github.com/Boruch-Baum/morc_menu
+cd morc_menu && sudo make install
 
 cp 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
