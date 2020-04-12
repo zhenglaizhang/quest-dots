@@ -1,6 +1,7 @@
 # quest-dots
 
 - [Turn off Windows hot key in Windows](https://www.howtogeek.com/282080/how-to-disable-the-built-in-windows-key-shortcuts/)
+- [Make window always on top](https://www.groovypost.com/howto/howto/configure-adobe-photoshop-advanced-tablet-options/)
 
 
 ```bash
