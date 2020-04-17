@@ -144,7 +144,8 @@ alias nvoff="rmmod nvidia_uvm && rmmod nvidia && sudo tee /proc/acpi/bbswitch <<
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vi="vim"
-alias o="open"
+alias o="explorer.exe"
+alias o.="explorer.exe ."
 alias og="open https://github.com/zhenglaizhang"
 alias oz="open http://zhenglaizhang.net"
 alias gs="git status -sb"
@@ -223,11 +224,6 @@ function ci () { echo 'y' | \code "$@" ; }
 
 ##################### ALIAS END #######################
 
-
-bindkey '^p' autosuggest-accept
-bindkey '^r' autosuggest-execute
-
-
 export KUBE_EDITOR='code --wait'
 
 # opts
@@ -277,3 +273,11 @@ fi
 complete -F __start_kubectl k
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+bindkey '^p' autosuggest-accept
+bindkey '^r' autosuggest-execute
+
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$(brew --prefix)/share/man:$MANPATH"
+export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
