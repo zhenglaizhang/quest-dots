@@ -103,6 +103,8 @@ export PATH=$PATH:${GOPATH//://bin:}/bin
 export GOTRACEBACK=all
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 
+# Aliases are only expanded as the first argument, or after another alias with a trailing space on the end of the command.
+alias watch="watch -d "
 alias task="asynctask -f"
 alias pc='proxychains '
 alias gco='git checkout -b'
